@@ -1,5 +1,11 @@
+void MoveandResizeWindow(CString window)
+{
+	  cvMoveWindow(SrcDlg, 0, 100);//ç¡®å®šå›¾ç‰‡ä½ç½®ï¼Œ
+   	cvResizeWindow(SrcDlg, 800, 320);//ç¡®å®šå›¾ç‰‡å¤§å°
+}
+
 void onMouse( int event, int x, int y, int, void*para )
-{   
+{
 	CFDetectionDlg *Cdlg = (CFDetectionDlg *)para;
 	if(CV_EVENT_LBUTTONDOWN == event)
 	{
@@ -8,27 +14,27 @@ void onMouse( int event, int x, int y, int, void*para )
 		rect.x = x;
 		rect.y = y;
 		Cdlg->AddString(BLUE,"retc.x = %d,rect.y = %d",x, y);
-		
+
 	}
 
 	else if (CV_EVENT_LBUTTONUP == event )
-	{   
+	{
 		cvCopy(cvPhoto, copyPhoto);
 		g_rect_br = cvPoint(x, y);
 		cvRectangle(copyPhoto,g_rect_br,g_rect_tl, cvScalar(0,0,0), 5);
-		
+
 
 		cvShowImage(SrcDlg, copyPhoto);
 
 		rect.height = abs(g_rect_tl.y - g_rect_br.y);
 		rect.width  = abs(g_rect_tl.x - g_rect_br.x);
 		Cdlg->AddString(BLUE,"rect.height = %d,rect.width = %d",rect.height, rect.width);
-//¸´ÖÆROI ²¢ÇÒÊÍ·Å
+//ï¿½ï¿½ï¿½ï¿½ROI ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½
 		proPhoto = cvCreateImage(cvSize(rect.width,rect.height), 8, 3);
-		
-	 	cvSetImageROI(copyPhoto, rect); //set ROI, 
 
-		cvCopy(copyPhoto, proPhoto); 
+	 	cvSetImageROI(copyPhoto, rect); //set ROI,
+
+		cvCopy(copyPhoto, proPhoto);
 		cvResetImageROI(copyPhoto);
 		//cvReleaseImage(&copyPhoto);
 		//copyPhoto = NULL;
@@ -48,4 +54,4 @@ void onMouse( int event, int x, int y, int, void*para )
 }
 
 
-//µ÷ÓÃ·½·¨£ºcvSetMouseCallback( SrcDlg, onMouse, this);
+//ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½cvSetMouseCallback( SrcDlg, onMouse, this);
