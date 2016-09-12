@@ -1,4 +1,4 @@
-void MoveandResizeWindow(CString window)
+void MoveandResizeWindow(CString SrcDlg)
 {
 	  cvMoveWindow(SrcDlg, 0, 100);//确定图片位置，
    	cvResizeWindow(SrcDlg, 800, 320);//确定图片大小
