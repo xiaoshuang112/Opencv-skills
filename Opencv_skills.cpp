@@ -1,3 +1,18 @@
+void colorReduce0(cv::Mat &image, int div=64)
+{
+      int nr= image.rows; // number of rows
+      int nc= image.cols * image.channels(); // total number of elements per line
+      for (int j=0; j<nr; j++)
+			{
+          uchar* data= image.ptr<uchar>(j);
+          for (int i=0; i<nc; i++)
+					{
+                  data[i]= data[i]/div*div + div/2;
+          }                    
+      }
+}
+
+
 void MoveandResizeWindow(CString SrcDlg)
 {
 	  cvMoveWindow(SrcDlg, 0, 100);//确定图片位置，
