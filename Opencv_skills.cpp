@@ -1,3 +1,21 @@
+IplImage*img = cvCreateImage(cvSize(100, 100), 8, 3);//Make hsv photo
+
+void CHSVToolDlg::OnBnClickedMake()
+{
+	cvZero(img);
+
+	int h = GetDlgItemInt(IDC_EDIT1);
+	int s = GetDlgItemInt(IDC_EDIT2);
+	int v = GetDlgItemInt(IDC_EDIT3);
+
+	cvAddS(img, cvScalar(h, s, v),img);
+	cvCvtColor(img, img, CV_HSV2BGR);
+
+	cvNamedWindow("photo", 0);
+	cvShowImage("photo", img);
+
+}
+
 void colorReduce0(cv::Mat &image, int div=64)
 {
       int nr= image.rows; // number of rows
